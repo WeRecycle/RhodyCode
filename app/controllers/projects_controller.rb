@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  
+
   # GET /projects
   # GET /projects.json
   def index
@@ -64,4 +64,9 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def project_params
+      params.require(:project).permit(:title, :description, :points)
+    end
 end
