@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p>
 
 <h1>Projects</h1>
 
@@ -29,3 +29,17 @@
 <br>
 
 <%= link_to 'New Project', new_project_path %>
+ -->
+
+
+<% @projects.each do |project| %>
+  <br />
+  <h2> <%= project.title %> </h2>
+  <p> <%= project.description %> </p>
+  <p> <%= project.points %> </p>
+  <%= link_to "View Project", project_path(project), class: "btn btn-default" %>
+  <br />
+<% end %>
+<br />
+<br />
+<%= link_to "New Project", new_project_path %>
