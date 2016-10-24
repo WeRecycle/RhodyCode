@@ -15,6 +15,11 @@
   <%= @project.points %>
 </p>
 
+<p>
+  <strong>Owner:</strong>
+  <%= @owner.email %>
+</p>
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
 
