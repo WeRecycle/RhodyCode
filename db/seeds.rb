@@ -18,6 +18,6 @@ tagList.each do |t|
 end
 
 #Dummy User
-user = User.create! name: 'John Doe', email: 'john@gmail.com', password: 'topsecret', password_confirmation: 'topsecret'
+user = User.create! email: 'john@gmail.com', password: 'topsecret', password_confirmation: 'topsecret'
 
-Project.create(title: 'Space Invader Game!', description: 'I am working on a Space Invader clone and would like some help programming it. Thanks guys!', points: 5, user_id: user.id)
+Project.create(title: 'Space Invader Game!', description: 'I am working on a Space Invader clone and would like some help programming it. Thanks guys!', points: 5, owner_id: user.id)
