@@ -7,7 +7,7 @@
     <a href="/projects"><menuButton>Projects</menuButton></a>
 
     <a href="/help"><menuButton>Help</menuButton></a>
-    <a href="#"><menuButton>Welcome, <i> <%= current_user.email %> </i></menuButton></a>
+    <%= link_to "Welcome, #{current_user.email}", edit_user_registration_path	 %>
   <% end %>
 </center>
 </div>
