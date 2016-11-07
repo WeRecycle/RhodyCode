@@ -1,0 +1,15 @@
+<div id="sideContainer">
+ <div class="row content">
+   <center>
+     <h4>Wecome</h4>
+      <h2><%= @user.email %></h2>
+        <img style="width:200px;" src="sm.jpg">
+        <h4>This is where I would say cool things that I know. I could put different langugages I know or things.</h6><br>
+        Also could put the tags that they are interested in</h4><br>
+
+        <%= @user.tags.each do %>
+          <button type="button" class="btn btn-secondary"><%= tag.name %></button>
+        <% end %>
+    </center>
+  </div>
+</div>

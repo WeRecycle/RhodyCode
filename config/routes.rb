@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :tags
-  root to: 'projects#index'
+  root to: 'projects#dashboard'
+  
+  resources :users, only: [:show]
 
   devise_for :users
   resources :projects

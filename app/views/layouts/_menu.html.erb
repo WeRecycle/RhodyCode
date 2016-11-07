@@ -1,0 +1,13 @@
+<div id="menuContainer">
+<center>
+  <%= image_tag "rhodeCode.png", style:"width:125px" %>
+  <% if signed_in? %>
+    <a href="/"><menuButton>Dashboard</menuButton></a>
+    <%= link_to "Profile", user_path(current_user) %>
+    <a href="/projects"><menuButton>Projects</menuButton></a>
+
+    <a href="/help"><menuButton>Help</menuButton></a>
+    <a href="#"><menuButton>Welcome, <i> <%= current_user.email %> </i></menuButton></a>
+  <% end %>
+</center>
+</div>

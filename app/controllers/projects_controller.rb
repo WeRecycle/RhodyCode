@@ -65,6 +65,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def dashboard
+    @projects = Project.order(created_at: :desc).limit(5)
+    @current_projects = current_user.owned_projects.order(created_at: :desc).first(2)
+  end
+
   private
     def project_params
       params.require(:project).permit(:title, :description, :points, tag_ids: [])
