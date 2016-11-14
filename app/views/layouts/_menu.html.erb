@@ -3,11 +3,11 @@
   <%= image_tag "rhodeCode.png", style:"width:125px" %>
   <% if signed_in? %>
     <a href="/"><menuButton>Dashboard</menuButton></a>
-    <%= link_to "Profile", user_path(current_user) %>
+    <a href= "<%=user_path(current_user)%>""/"><menuButton>Profile</menuButton></a>
     <a href="/projects"><menuButton>Projects</menuButton></a>
-
     <a href="/help"><menuButton>Help</menuButton></a>
-    <%= link_to "Welcome, #{current_user.email}", edit_user_registration_path	 %>
+    <a href= "<%=edit_user_registration_path%>""/"><menuButton><%="Welcome, #{current_user.email}"%></menuButton></a>
+
   <% end %>
 </center>
 </div>
