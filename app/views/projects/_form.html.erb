@@ -2,6 +2,7 @@
   <%= f.input :title, label: "Project Title" %>
   <%= f.input :description %>
   <%= f.input :points %>
+  <%= f.input :image, as: :file %>
   <%= f.association :tags %>
   <%= f.button :submit %>
 <% end %>
