@@ -67,6 +67,11 @@ body {
   margin-top: 0;
 }
 
+.dashboard-container img {
+  width: 200px;
+  height: 200px;
+}
+
 .rounded {
   border-radius: 10px;
   background: #000; // without a background or border applied you won't be able to see if its rounded
