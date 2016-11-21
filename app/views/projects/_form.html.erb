@@ -1,7 +1,6 @@
 <%= simple_form_for @project do |f| %>
   <%= f.input :title, label: "Project Title" %>
   <%= f.input :description %>
-  <%= f.input :points %>
   <%= f.input :image, as: :file %>
   <%= f.association :tags %>
   <%= f.button :submit %>
