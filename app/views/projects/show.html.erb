@@ -1,32 +1,48 @@
 <p id="notice"><%= notice %></p>
+<div id="wideContainer">
+  <center><h1><%= @project.title %> <button type="button" class="btn btn-success">Follow</button>
+        <button type="button" class="btn btn-secondary">Following</button></h1></center>
+  <p>
+    <div class="dashboard-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
-
-<p>
-  <strong>Points:</strong>
-  <%= @project.points %>
-</p>
-
-<p>
-  <strong>Owner:</strong>
-  <%= @owner.email %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+                      <%= image_tag @project.image.url %>
+                </td>
+                <td>
+                      <%= @project.description %>
+                      <br><br>
 
 
-<h2><%= @project.title %></h2>
-<p><%= @project.description %></p>
 
-<% @project.tags.each do |tag| %>
-  <h3><%= tag.name %></h3>
-<% end %>
+
+                      <br><br>
+                      <p align="right">
+                        Project created by: <i> <%= @project.owner.email %> </i>
+
+                        <br><br>
+
+                        <i> Members: </i> Person One, Person Two, Person Three, Person Four, Person Five
+
+                        <br><br>
+
+                        Last Updated : <i> October 24, 2016</i></p>
+
+                      <hr>
+                      <% @project.tags.each do |tag| %>
+                        <a href="<%= tag_path(tag) %>" class="btn btn-primary"><%= tag.name %></a>
+                      <% end %>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
