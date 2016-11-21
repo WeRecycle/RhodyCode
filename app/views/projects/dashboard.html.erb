@@ -30,7 +30,7 @@
               <% @projects.each do |project| %>
                 <tr>
                   <td>
-                    <h3><%= project.title %></h3>
+                    <h3><%= link_to project.title, project_path(project) %></h3>
                     <%= image_tag project.image.url %>
                   </td>
 

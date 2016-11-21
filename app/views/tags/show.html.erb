@@ -1,15 +1,54 @@
-<p id="notice"><%= notice %></p>
+<div id="container" class="clearfix">
 
-<p>
-  <strong>Name:</strong>
-  <%= @tag.name %>
-</p>
 
-<ul>
-  <% @tag.projects.each do |project| %>
-    <li><%= project.title %></li>
-  <% end %>
-</li>
+  <div id="sideContainer">
+    <div class="row">
+        <h4 class="text-center">Filters</h4>
+        <% Tag.all.each do |tag| %>
+          <%= link_to tag.name, tag_path(tag), class: "btn btn-primary marg-top-5" %>
+        <% end %>
+    </div>
+  </div>
 
-<%= link_to 'Edit', edit_tag_path(@tag) %> |
-<%= link_to 'Back', tags_path %>
+
+
+
+  <div id="sideContainerLeft">
+    <% if @projects.empty? %>
+      <center><h2>No Projects Found</h2></center>
+    <% else %>
+      <center><h1><%= @tag.name %> Projects</h1></center>
+      <%= link_to "Create Project", new_project_path, class: 'btn btn-primary pull-right' %>
+      <p>
+        <div class="dashboard-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+              <% @projects.each do |project| %>
+              <tr>
+                <td>
+                  <h3><%= link_to project.title, project_path(project) %></h3>
+                  <%= image_tag "frogger.png" %>
+                </td>
+
+                <td>
+                  <%= project.description %>
+                  <br><br>
+                  <p align="right">Last Updated : <i> October 24, 2016</i></p>
+
+                  <hr>
+                  <% project.tags.each do |tag| %>
+                    <a href="<%= tag_path(tag) %>" class="btn btn-primary"><%= tag.name %></a>
+                  <% end %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% end %>
+    </div>
