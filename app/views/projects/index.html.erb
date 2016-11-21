@@ -5,9 +5,7 @@
     <div class="row">
         <h4 class="text-center">Filters</h4>
         <% Tag.all.each do |tag| %>
-          <div class="checkbox">
-              <label><input type="checkbox" value=""><%= tag.name %></label>
-          </div>
+          <%= link_to tag.name, tag_path(tag), class: "btn btn-primary marg-top-5" %>
         <% end %>
     </div>
   </div>
