@@ -4,10 +4,20 @@
      <h4>Wecome</h4>
       <h2><%= @user.email %></h2>
       <%= image_tag @user.avatar.url, class: "profile" %>
-      <h4>This is where I would say cool things that I know. I could put different langugages I know or things.</h6><br>
-      Also could put the tags that they are interested in</h4><br>
+      <p>
+      <h4>About me: </h4>
+      <% if @user.id == current_user.id %>
+        <%= link_to "Edit description", edit_user_registration_path %>
+      <% end %>
+      <p>
+        <% if @user.description.empty? %>
+          No description yet.
+        <% else %>
+          <%= @user.description %>
+        <% end %>
+      </p><br>
 
-      <%= @user.tags.each do %>
+      <% @user.tags.each do %>
         <button type="button" class="btn btn-secondary"><%= tag.name %></button>
       <% end %>
     </center>
