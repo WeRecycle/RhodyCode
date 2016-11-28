@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 <div id="wideContainer">
   <center><h1><%= @project.title %> <button type="button" class="btn btn-success">Follow</button>
-        <button type="button" class="btn btn-secondary">Following</button></h1></center>
+        <button type="button" class="btn btn-secondary">Following</button>
+  </h1></center>
   <p>
     <div class="dashboard-container">
           <table class="table">
@@ -18,6 +19,7 @@
                 </td>
                 <td>
                       <%= @project.description %>
+
                       <br><br>
 
 
@@ -33,8 +35,8 @@
 
                         <br><br>
 
-                        Last Updated : <i> October 24, 2016</i></p>
-
+                        <i><%= @project.updated_at.in_time_zone("Eastern Time (US & Canada)").strftime("Last Updated : %B %d %I:%M %p") %></i></p>
+                        <a href="<%=edit_project_path(@project) %>"class="btn btn-primary">Edit</a>
                       <hr>
                       <% @project.tags.each do |tag| %>
                         <a href="<%= tag_path(tag) %>" class="btn btn-primary"><%= tag.name %></a>
