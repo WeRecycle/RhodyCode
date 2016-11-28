@@ -4,15 +4,15 @@
   <%= devise_error_messages! %>
 
     <%= f.input :avatar, as: :file %>
-    <%= f.label :email %><br />
     <%= f.input :email, autofocus: true %>
 
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    
     <%= f.input :password, autocomplete: "off" %>
+	<em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br /><br />
 
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.input :password_confirmation, autocomplete: "off" %>
 
     <%= f.button :submit %>
 <% end %>
