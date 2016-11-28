@@ -1,0 +1,22 @@
+#whiteContainer {
+  background: #ffffff;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+#blueContainer {
+  background: #1c3664;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+body {
+  font-family: 'Lato', sans-serif;
+  line-height: 150%;
+}
