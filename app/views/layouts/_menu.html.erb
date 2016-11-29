@@ -1,13 +1,29 @@
+<!--=============================== Menu ===============================  -->
 <div id="menuContainer">
+
+
+
 <center>
   <%= image_tag "rhodeCode.png", style:"width:125px" %>
-  <% if signed_in? %>
-    <a href="/"><menuButton>Dashboard</menuButton></a>
-    <a href= "<%=user_path(current_user)%>""/"><menuButton>Profile</menuButton></a>
-    <a href="/projects"><menuButton>Projects</menuButton></a>
-    <a href="/help"><menuButton>Help</menuButton></a>
-    <a href= "<%=edit_user_registration_path%>""/"><menuButton><%="Welcome, #{current_user.email}"%></menuButton></a>
+    <% if signed_in? %>
+  <a href="/"><menuButton>Dashboard</menuButton></a>
+  <a href= "<%=user_path(current_user)%>""/"><menuButton>Profile</menuButton></a>
+  <a href="/projects"><menuButton>Projects</menuButton></a>
 
-  <% end %>
+  <a href="/help"><menuButton>Help</menuButton></a>
+
+  <div class="dropdown">
+     <a href= "<%=edit_user_registration_path%>""/"><button class="btn btn-primary-dropdown dropdown-toggle" type="button" data-toggle="dropdown"><%="Welcome, #{current_user.email}"%>
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">My Profile</a></li>
+        <li><a href="#">Edit Profile</a></li>
+        <li><a href="#">Sign Out</a></li>
+      </ul>
+  </div>
+
+
+<% end %>
 </center>
 </div>
+<!--=============================== End of Menu ===============================  -->
