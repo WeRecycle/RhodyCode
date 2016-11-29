@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-
+  
   # GET /projects
   # GET /projects.json
   def index
