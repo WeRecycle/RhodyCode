@@ -15,6 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+gem 'pg'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -34,6 +35,9 @@ gem "paperclip", "~> 5.0.0"
 # The required gems for simple_form
 gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem 'bootstrap-sass', '~> 3.3.6'
+
+gem "acts_as_follower", github: "tcocca/acts_as_follower"
+
 
 gem 'devise'
 

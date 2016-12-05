@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  
+
   # GET /projects
   # GET /projects.json
   def index
@@ -54,6 +54,20 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # POST /projects/1/follow
+  def follow
+    @project = Project.find(params[:id])
+    current_user.follow(@project) unless current_user.following?(@project)
+    redirect_to :back
+  end
+
+  # POST /projects/1/unfollow
+  def unfollow
+    @project = Project.find(params[:id])
+    current_user.stop_following(@project) if current_user.following?(@project)
+    redirect_to :back
+  end
+
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
@@ -66,7 +80,7 @@ class ProjectsController < ApplicationController
   end
 
   def dashboard
-    @projects = Project.order(created_at: :desc).limit(5)
+    @projects = current_user.all_following + current_user.owned_projects.order(updated_at: :desc)
     @current_projects = current_user.owned_projects.order(created_at: :desc).first(2)
   end
 

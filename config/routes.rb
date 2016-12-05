@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   root to: 'projects#dashboard'
 
   devise_for :users
-  resources :projects
+  resources :projects do
+    member do
+      post 'follow'
+      post 'unfollow'
+    end
+  end
 
   resources :users, only: [:show]
 
