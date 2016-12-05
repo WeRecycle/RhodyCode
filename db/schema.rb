@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114193616) do
+ActiveRecord::Schema.define(version: 20161128191637) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "follows", force: :cascade do |t|
+    t.string   "followable_type",                 null: false
+    t.integer  "followable_id",                   null: false
+    t.string   "follower_type",                   null: false
+    t.integer  "follower_id",                     null: false
+    t.boolean  "blocked",         default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["followable_id", "followable_type"], name: "fk_followables", using: :btree
+    t.index ["follower_id", "follower_type"], name: "fk_follows", using: :btree
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string   "title"
@@ -28,8 +43,8 @@ ActiveRecord::Schema.define(version: 20161114193616) do
   create_table "projects_tags", id: false, force: :cascade do |t|
     t.integer "project_id", null: false
     t.integer "tag_id",     null: false
-    t.index ["project_id"], name: "index_projects_tags_on_project_id"
-    t.index ["tag_id"], name: "index_projects_tags_on_tag_id"
+    t.index ["project_id"], name: "index_projects_tags_on_project_id", using: :btree
+    t.index ["tag_id"], name: "index_projects_tags_on_tag_id", using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
@@ -41,8 +56,8 @@ ActiveRecord::Schema.define(version: 20161114193616) do
   create_table "tags_users", id: false, force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "tag_id",  null: false
-    t.index ["tag_id"], name: "index_tags_users_on_tag_id"
-    t.index ["user_id"], name: "index_tags_users_on_user_id"
+    t.index ["tag_id"], name: "index_tags_users_on_tag_id", using: :btree
+    t.index ["user_id"], name: "index_tags_users_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -63,8 +78,8 @@ ActiveRecord::Schema.define(version: 20161114193616) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.text     "description"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end
