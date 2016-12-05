@@ -40,7 +40,7 @@
    <a href="help.html"><menuButton>Help</menuButton></a>
 
    <div class="dropdown">
-     <button class="btn btn-primary-dropdown dropdown-toggle" type="button" data-toggle="dropdown">Welcome, Daniel
+     <button class="btn btn-primary-dropdown dropdown-toggle" type="button" data-toggle="dropdown"><%="Welcome, #{current_user.email}"%>
        <span class="caret"></span></button>
        <ul class="dropdown-menu">
          <li><a href="<%=user_path(current_user)%>""/">My Profile</a></li>
