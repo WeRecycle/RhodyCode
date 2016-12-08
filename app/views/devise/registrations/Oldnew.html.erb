@@ -1,0 +1,20 @@
+<h2>Sign up</h2>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+    <%= f.input :avatar, as: :file %>
+    <%= f.input :email, autofocus: true %>
+
+    <% if @minimum_password_length %>
+    
+    <%= f.input :password, autocomplete: "off" %>
+	<em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br /><br />
+
+    <%= f.input :password_confirmation, autocomplete: "off" %>
+
+    <%= f.button :submit %>
+<% end %>
+
+<%= render "devise/shared/links" %>

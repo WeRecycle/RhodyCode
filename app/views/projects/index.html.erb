@@ -26,7 +26,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @projects.each do |project| %>
+            <% @projects.reverse.each do |project| %>
             <tr>
               <td>
                 <h3><%= link_to project.title, project_path(project) %></h3>

@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
+<div id="container">
 <div id="wideContainer">
-  <center><h1><%= @project.title %>
+  <center><h1><%= @project.title %></h1>
     <% if current_user.following?(@project) %>
       <%= form_tag unfollow_project_path(@project), method: :post do %>
         <%= submit_tag "Following", class:"btn btn-secondary" %>
@@ -53,4 +54,5 @@
 
             </tbody>
           </table>
-        </div>
+</div>
+</div>
