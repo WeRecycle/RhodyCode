@@ -1,8 +1,15 @@
 <p id="notice"><%= notice %></p>
 <div id="wideContainer">
-  <center><h1><%= @project.title %> <button type="button" class="btn btn-success">Follow</button>
-        <button type="button" class="btn btn-secondary">Following</button>
-  </h1></center>
+  <center><h1><%= @project.title %>
+    <% if current_user.following?(@project) %>
+      <%= form_tag unfollow_project_path(@project), method: :post do %>
+        <%= submit_tag "Following", class:"btn btn-secondary" %>
+      <% end %>
+    <% else %>
+      <%= form_tag follow_project_path(@project), method: :post do %>
+        <%= submit_tag "Follow", class:"btn btn-success" %>
+      <% end %>
+    <% end %>
   <p>
     <div class="dashboard-container">
           <table class="table">

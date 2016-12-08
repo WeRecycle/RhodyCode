@@ -16,4 +16,5 @@ class Project < ApplicationRecord
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" },
                     default_url: lambda{|attach| gravatar_url(attach.instance.title, size:300)}, escape_url: false
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  acts_as_followable
 end
