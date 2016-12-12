@@ -11,5 +11,10 @@ module RhodyCode
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    config.to_prepare do
+      Devise::SessionsController.skip_before_filter :ensure_login
+      Devise::RegistrationsController.skip_before_filter :ensure_login
+    end
   end
 end

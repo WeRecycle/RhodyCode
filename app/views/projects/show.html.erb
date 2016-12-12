@@ -30,16 +30,14 @@
 
                       <br><br>
 
-
-
-
                       <br><br>
                       <p align="right">
                         Project created by: <i> <%= @project.owner.email %> </i>
 
                         <br><br>
 
-                        <i> Members: </i> Person One, Person Two, Person Three, Person Four, Person Five
+                        <i> Followers: </i>
+                        <%= @project.followers.map {|follower| follower.email}.join(",") %>
 
                         <br><br>
 

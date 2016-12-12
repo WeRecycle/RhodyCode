@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
+  before_action :ensure_login
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -11,11 +11,7 @@ class ApplicationController < ActionController::Base
       end
 
     private
-      def authenticate_user!
-        if user_signed_in?
-          super
-        else
-          redirect_to "/landingpage"
-        end
+      def ensure_login
+        redirect_to "/landingpage" unless user_signed_in?
       end
 end

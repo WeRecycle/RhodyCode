@@ -5,9 +5,9 @@
       <center class="current-projects">
         <p><h2>Current Projects</h2>
           <% @current_projects.each do |project| %>
-            <h4><%= project.title %></h4><br>
+            <h4><%= link_to project.title, project_path(project) %></h4><br>
             <%= image_tag project.image.url %>
-            <h6><i>6 members</i></h6><br>
+            <h6><i><%= project.followers.count %> followers</i></h6><br>
           <% end %>
         </div>
       </center>

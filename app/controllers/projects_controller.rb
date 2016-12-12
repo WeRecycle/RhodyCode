@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_ownership, only: [:edit, :update]
 
   # GET /projects
   # GET /projects.json
@@ -30,6 +31,7 @@ class ProjectsController < ApplicationController
     @project = current_user.owned_projects.create(project_params)
     respond_to do |format|
       if @project.save
+        current_user.follow(@project)
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -80,12 +82,17 @@ class ProjectsController < ApplicationController
   end
 
   def dashboard
-    @projects = current_user.all_following + current_user.owned_projects.order(updated_at: :desc)
+    @projects = current_user.all_following
     @current_projects = current_user.owned_projects.order(created_at: :desc).first(2)
   end
 
   private
     def project_params
       params.require(:project).permit(:title, :description, :points, :image, tag_ids: [])
+    end
+
+    def ensure_ownership
+      @project = Project.find(params[:id])
+      redirect_to :back unless current_user.id == @project.owner_id
     end
 end
