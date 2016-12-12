@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%= csrf_meta_tags %>
 <html lang="en">
 <head>
   <title>Login - rhodyCode </title>
@@ -12,51 +13,37 @@
 </head>
 
 <body>
-
-
-
-
-
   <div id="container">
               <center>
                <h2>Log in</h2>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true %>
+            </div>
 
-          <form class="new_user" id="new_user" action="/users/sign_in" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="T2hYgr5bhXFpuTa65k+4ML8SBkNVCU+hd0HvZy7zMjKzw1Zs11GvzQn2Pws+WjpVjtnZOm0KD66nOKIsz+BqKg==" />
-           <div class="field">
-             <label for="user_email">Email</label><br />
-             <input autofocus="autofocus" type="email" value="" name="user[email]" id="user_email" />
-           </div>
+            <div class="field">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, autocomplete: "off" %>
+            </div>
 
-           <div class="field">
-             <label for="user_password">Password</label><br />
-             <input autocomplete="off" type="password" name="user[password]" id="user_password" />
-           </div>
+            <% if devise_mapping.rememberable? -%>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end -%>
 
-             <div class="field">
-               <input name="user[remember_me]" type="hidden" value="0" /><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me" />
-               <label for="user_remember_me">Remember me</label>
-             </div>
+            <div class="actions">
+              <%= f.submit "Log in" %>
+            </div>
+          <% end %>
 
-           <div class="actions">
-             <input type="submit" name="commit" value="Log in" data-disable-with="Log in" />
-           </div>
-          </form>
-
-           <a href="/users/sign_up">Sign up</a><br />
-
-           <a href="/users/password/new">Forgot your password?</a><br />
-
-
-
-
-
+          <%= render "devise/shared/links" %>
    </div>
 
 </div>
 </div>
-
-
-
 <!--=============================== Footer===============================  -->
 <br>
 <div id="footer">

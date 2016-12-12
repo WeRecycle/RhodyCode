@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%= csrf_meta_tags %>
 <html lang="en">
 <head>
   <title>Login - rhodyCode </title>
@@ -19,31 +20,26 @@
     <center>
       <div id="loginContainer">
           <h2>Sign up!</h2>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
 
-          <form novalidate="novalidate" class="simple_form new_user" id="new_user" enctype="multipart/form-data" action="/users" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="OIwFp3op6bjbZFmyjpW8ZmY6VHjr6zouaaL93H8ZkKZWDtD/5eiaOhSj9uo11DlPb1qPZekuM53dJCqoH2Y3mg==" />
+        <%= f.input :avatar, as: :file %>
+        <%= f.input :email, autofocus: true %>
 
+        <% if @minimum_password_length %>
 
-        <div class="form-group file optional user_avatar"><label class="control-label file optional" for="user_avatar">Avatar</label><input class="file optional" type="file" name="user[avatar]" id="user_avatar" /></div>
-        <div class="form-group email optional user_email"><label class="control-label email optional" for="user_email">Email</label><input class="form-control string email optional" autofocus="autofocus" type="email" value="" name="user[email]" id="user_email" /></div>
+        <%= f.input :password, autocomplete: "off" %>
+    	<em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br /><br />
 
+        <%= f.input :password_confirmation, autocomplete: "off" %>
 
-        <div class="form-group password optional user_password"><label class="control-label password optional" for="user_password">Password</label><input class="form-control password optional" type="password" name="user[password]" id="user_password" /></div>
-    	<em>(6 characters minimum)</em>
-        <br /><br />
+        <%= f.button :submit %>
+    <% end %>
 
-        <div class="form-group password optional user_password_confirmation"><label class="control-label password optional" for="user_password_confirmation">Password confirmation</label><input class="form-control password optional" type="password" name="user[password_confirmation]" id="user_password_confirmation" /></div>
-
-        <input type="submit" name="commit" value="Create User" class="btn btn-default" data-disable-with="Create User" />
-    </form>
+    <%= render "devise/shared/links" %>
     <br/>
     <br/>
-       <a href="/users/sign_in"><button type="button" class="btn btn-secondary">Log in</button></a>
-
-
-
-
-
-
       </center>
     </div>
   </div>
