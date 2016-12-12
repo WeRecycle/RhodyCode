@@ -19,5 +19,3 @@ end
 
 #Dummy User
 user = User.create! email: 'john@gmail.com', password: 'topsecret', password_confirmation: 'topsecret'
-
-Project.create(title: 'Space Invader Game!', description: 'I am working on a Space Invader clone and would like some help programming it. Thanks guys!', points: 5, owner_id: user.id)
