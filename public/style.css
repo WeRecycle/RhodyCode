@@ -1,0 +1,109 @@
+#container {
+  margin:auto;
+  width: 90%;
+  margin-top: 25px;
+  padding: 15px;
+  background: #cfcfd1;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#sideContainer {
+  margin:auto;
+  float: left;
+  width: 23%;
+  padding: 25px;
+  background: #f2f7ff;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#sideContainerLeft {
+  border-radius: 25px;
+  margin:auto;
+  float: right;
+  width: 75%;
+  padding: 25px;
+  background: #f2f7ff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#menuContainer {
+  height: 60px;
+  background: #1c3664;
+  padding-left: 15px;
+  padding-top: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+#footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#wideContainer {
+  margin:auto;
+  width: 100%;
+  padding: 25px;
+  background: #f2f7ff;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+body {
+  font-family: 'Lato', sans-serif;
+  line-height: 150%;
+}
+h4 {
+  line-height: 150%;
+}
+
+.rounded {
+  border-radius: 10px;
+  background: #000; // without a background or border applied you won't be able to see if its rounded
+}
+
+.btn-primary-dropdown, .btn-primary-dropdown:focus, .btn-primary-dropdown:hover, .btn-primary-dropdown:active{
+    background:none;
+    color: #fff;
+    font-family: Sans-serif;
+    font-size: 14px;
+    margin: 10px 10px;
+    text-align: center;
+    transition: all 0.3s ease 0s;
+    }
+
+
+.dropdown{
+   display: inline;
+}
+
+
+menuButton {
+    color: #fff;
+    font-family: Sans-serif;
+    font-size: 15px;
+    height: 60px;
+    width: 150px;
+    line-height: 25px;
+    margin: 10px 10px;
+    text-align: center;
+    transition: all 0.3s ease 0s;
+}
+
+menuButton:hover {
+  color: #c4daff;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    transition: all 0.3s ease 0s;
+    background-color: #555;
+    content:"e";
+}

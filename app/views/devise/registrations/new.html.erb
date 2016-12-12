@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<%= csrf_meta_tags %>
+<html lang="en">
+<head>
+  <title>Login - rhodyCode </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css"  href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="icon" type="image/x-icon" href="rhody.ico">
+</head>
+<body>
+
+
+
+  <div id="container">
+  <div id="wideContainer">
+    <center>
+      <div id="loginContainer">
+          <h2>Sign up!</h2>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+        <%= f.input :avatar, as: :file %>
+        <%= f.input :email, autofocus: true %>
+
+        <% if @minimum_password_length %>
+
+        <%= f.input :password, autocomplete: "off" %>
+    	<em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br /><br />
+
+        <%= f.input :password_confirmation, autocomplete: "off" %>
+
+        <%= f.button :submit %>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+    <br/>
+    <br/>
+      </center>
+    </div>
+  </div>
+</div>
+
+
+<!--=============================== Footer===============================  -->
+<br>
+<div id="footer">
+  <center><p>rhodyCode 2016 - <a href="mailto:rhodyCode@gmail.com" target="_top">rhodyCode@gmail.com</p></center>
+</div>
+<!--=============================== End of Footer===============================  -->
+
+</body>
+</html>

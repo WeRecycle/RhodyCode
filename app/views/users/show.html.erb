@@ -1,0 +1,63 @@
+<div class="clearfix" id="container" >
+<div id="sideContainer">
+ <div class="row content">
+   <center>
+     <h4>Wecome</h4>
+      <h3><%= @user.email %></h3>
+      <%= image_tag @user.avatar.url, class: "profile" %>
+      <p>
+      <h4>About me: </h4>
+      <% if @user.id == current_user.id %>
+        <%= link_to "Edit description", edit_user_registration_path %>
+      <% end %>
+      <p>
+        <% if @user.description %>
+          <%= @user.description %>
+        <% else %>
+          No description yet.
+        <% end %>
+      </p><br>
+
+      <% @user.tags.each do %>
+        <button type="button" class="btn btn-secondary"><%= tag.name %></button>
+      <% end %>
+    </center>
+  </div>
+</div>
+
+<div id="sideContainerLeft">
+  <center><h1>Active Projects</h1></center>
+  <p>
+    <div class="dashboard-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Project Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @projects.each do |project| %>
+            <tr>
+              <td>
+                <h3><%= link_to project.title, project_path(project) %></h3>
+                <%= image_tag project.image.url %>
+              </td>
+
+              <td>
+                <%= project.description %>
+                <br><br>
+                <p align="right"><i><%= project.updated_at.in_time_zone("Eastern Time (US & Canada)").strftime("Last Updated : %B %d %I:%M %p") %> </i></p>
+
+                <hr>
+                <% project.tags.each do |tag| %>
+                  <a href="<%= tag_path(tag) %>" class="btn btn-primary"><%= tag.name %></a>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

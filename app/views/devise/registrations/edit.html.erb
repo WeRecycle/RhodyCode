@@ -1,0 +1,31 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put, html: {multipart: true}) do |f| %>
+  <%= devise_error_messages! %>
+
+    <%= f.input :avatar, as: :file %>
+
+    <%= f.input :description %>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <%= f.input :password, autocomplete: "off" %> 
+  (Optional)<br />
+  <% if @minimum_password_length %>
+    <em><%= @minimum_password_length %> characters minimum</em>
+  <% end %>
+
+  <%= f.input :password_confirmation, autocomplete: "off" %>
+
+  <%= f.input :current_password, autocomplete: "off" %>
+
+  <%= f.button :submit %>
+<% end %>
+
+<h3><b>Cancel my account</b></h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>

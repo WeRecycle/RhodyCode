@@ -1,15 +1,18 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :ensure_ownership, only: [:edit, :update]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.all # gets all the Projects
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @project = Project.find(params[:id])
+    @owner = User.find(@project.owner_id)
   end
 
   # GET /projects/new
@@ -19,15 +22,16 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+    @project = Project.find(params[:id])
   end
 
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
-
+    @project = current_user.owned_projects.create(project_params)
     respond_to do |format|
       if @project.save
+        current_user.follow(@project)
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -40,6 +44,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    @project = Project.find(params[:id])
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -51,9 +56,24 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # POST /projects/1/follow
+  def follow
+    @project = Project.find(params[:id])
+    current_user.follow(@project) unless current_user.following?(@project)
+    redirect_to :back
+  end
+
+  # POST /projects/1/unfollow
+  def unfollow
+    @project = Project.find(params[:id])
+    current_user.stop_following(@project) if current_user.following?(@project)
+    redirect_to :back
+  end
+
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    @project = Project.find(params[:id])
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
@@ -61,14 +81,18 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def dashboard
+    @projects = current_user.all_following
+    @current_projects = current_user.owned_projects.order(created_at: :desc).first(2)
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id])
+    def project_params
+      params.require(:project).permit(:title, :description, :points, :image, tag_ids: [])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_params
-      params.require(:project).permit(:title, :description, :points)
+    def ensure_ownership
+      @project = Project.find(params[:id])
+      redirect_to :back unless current_user.id == @project.owner_id
     end
 end

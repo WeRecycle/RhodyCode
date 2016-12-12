@@ -1,0 +1,27 @@
+<!--=============================== Menu ===============================  -->
+ <center>
+   <div id="menuContainer">
+   <%= image_tag "rhodeCode.png", style:"width:125px" %>
+     <% if signed_in? %>
+
+     <a href="/"><menuButton>Dashboard</menuButton></a>
+     <a href= "<%=user_path(current_user)%>""/"><menuButton>Profile</menuButton></a>
+     <a href="/projects"><menuButton>Projects</menuButton></a>
+
+   <a href="/help.html"><menuButton>Help</menuButton></a>
+
+   <div class="dropdown">
+     <button class="btn btn-primary-dropdown dropdown-toggle" type="button" data-toggle="dropdown"><%="Welcome, #{current_user.email}"%>
+       <span class="caret"></span></button>
+       <ul class="dropdown-menu">
+         <li><a href="<%=user_path(current_user)%>""/">My Profile</a></li>
+         <li><a href="/users/edit">Edit Profile</a></li>
+         <li><%=link_to "Sign Out", destroy_user_session_path, method: :delete%></li>
+       </ul>
+   </div>
+
+
+<% end %>
+</center>
+</div>
+<!--=============================== End of Menu ===============================  -->

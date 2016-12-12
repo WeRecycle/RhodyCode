@@ -1,19 +1,56 @@
 <p id="notice"><%= notice %></p>
+<div id="container">
+<div id="wideContainer">
+  <center><h1><%= @project.title %></h1>
+    <% if current_user.following?(@project) %>
+      <%= form_tag unfollow_project_path(@project), method: :post do %>
+        <%= submit_tag "Following", class:"btn btn-secondary" %>
+      <% end %>
+    <% else %>
+      <%= form_tag follow_project_path(@project), method: :post do %>
+        <%= submit_tag "Follow", class:"btn btn-success" %>
+      <% end %>
+    <% end %>
+  <p>
+    <div class="dashboard-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                      <%= image_tag @project.image.url %>
+                </td>
+                <td>
+                      <%= @project.description %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+                      <br><br>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
+                      <br><br>
+                      <p align="right">
+                        Project created by: <i> <%= @project.owner.email %> </i>
 
-<p>
-  <strong>Points:</strong>
-  <%= @project.points %>
-</p>
+                        <br><br>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+                        <i> Followers: </i>
+                        <%= @project.followers.map {|follower| follower.email}.join(",") %>
+
+                        <br><br>
+
+                        <i><%= @project.updated_at.in_time_zone("Eastern Time (US & Canada)").strftime("Last Updated : %B %d %I:%M %p") %></i></p>
+                        <a href="<%=edit_project_path(@project) %>"class="btn btn-primary">Edit</a>
+                      <hr>
+                      <% @project.tags.each do |tag| %>
+                        <a href="<%= tag_path(tag) %>" class="btn btn-primary"><%= tag.name %></a>
+                      <% end %>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+</div>
+</div>

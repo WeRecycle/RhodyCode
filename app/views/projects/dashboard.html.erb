@@ -1,0 +1,52 @@
+<div id="container" class="clearfix">
+
+  <div id="sideContainer">
+    <div class="row content">
+      <center class="current-projects">
+        <p><h2>Current Projects</h2>
+          <% @current_projects.each do |project| %>
+            <h4><%= link_to project.title, project_path(project) %></h4><br>
+            <%= image_tag project.image.url %>
+            <h6><i><%= project.followers.count %> followers</i></h6><br>
+          <% end %>
+        </div>
+      </center>
+    </div>
+
+
+    <!--=============================== Left Container ===============================  -->
+    <div id="sideContainerLeft">
+      <center><h1>Active Projects</h1></center>
+      <p>
+        <div class="dashboard-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @projects.each do |project| %>
+                <tr>
+                  <td>
+                    <h3><%= link_to project.title, project_path(project) %></h3>
+                    <%= image_tag project.image.url %>
+                  </td>
+
+                  <td>
+                    <%= project.description %>
+                    <br><br>
+                    <p align="right"><i><%= project.updated_at.in_time_zone("Eastern Time (US & Canada)").strftime("Last Updated : %B %d %I:%M %p") %> </i></p>
+
+                    <hr>
+                    <% project.tags.each do |tag| %>
+                      <a href="<%= tag_path(tag) %>" class="btn btn-primary"><%= tag.name %></a>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>

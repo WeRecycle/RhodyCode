@@ -1,31 +1,51 @@
-<p id="notice"><%= notice %></p>
+<div id="container" class="clearfix">
 
-<h1>Projects</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Points</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div id="sideContainer">
+    <div class="row">
+        <h4 class="text-center">Filters</h4>
+        <% Tag.all.each do |tag| %>
+          <%= link_to tag.name, tag_path(tag), class: "btn btn-primary marg-top-5" %>
+        <% end %>
+    </div>
+  </div>
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.title %></td>
-        <td><%= project.description %></td>
-        <td><%= project.points %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Project', new_project_path %>
+
+  <div id="sideContainerLeft">
+    <center><h1>Projects</h1></center>
+    <%= link_to "Create Project", new_project_path, class: 'btn btn-primary pull-right' %>
+    <p>
+      <div class="dashboard-container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Project Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @projects.reverse.each do |project| %>
+            <tr>
+              <td>
+                <h3><%= link_to project.title, project_path(project) %></h3>
+                <%= image_tag project.image.url %>
+              </td>
+
+              <td>
+                <%= project.description %>
+                <br><br>
+                <p align="right"><i> <%= project.updated_at.in_time_zone("Eastern Time (US & Canada)").strftime("Last Updated : %B %d %I:%M %p") %> </i></p>
+
+                <hr>
+                <% project.tags.each do |tag| %>
+                  <a href="<%= tag_path(tag) %>" class="btn btn-primary"><%= tag.name %></a>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
