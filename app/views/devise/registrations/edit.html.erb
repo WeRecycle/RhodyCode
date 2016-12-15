@@ -1,3 +1,5 @@
+<div id="container">
+  <div id="wideContainer">
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put, html: {multipart: true}) do |f| %>
@@ -11,7 +13,7 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <%= f.input :password, autocomplete: "off" %> 
+  <%= f.input :password, autocomplete: "off" %>
   (Optional)<br />
   <% if @minimum_password_length %>
     <em><%= @minimum_password_length %> characters minimum</em>
@@ -29,3 +31,6 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+</div>
+</div>
